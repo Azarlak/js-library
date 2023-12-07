@@ -20,7 +20,7 @@ function AssertIs1(testIs) {
 		if (label.length === 0) throw new Error(`Label must have a non-zero length`);
 		if (testIs(value)) return value;
 		throw new Error(`Type assertion failed: !${NAME_TEST}(${label})` + [
-			`(typeof ${label}="${typeof value}"`,
+			`(typeof ${label}="${typeof value}")`,
 			...(typeof value === "number" ? [`(value=(${value}))`] : []),
 		].map(s => "\n" + s).join(""));
 	}
