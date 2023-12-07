@@ -1,6 +1,6 @@
 function AssertIs1(testIs) {
 	if (typeof testIs !== "function") throw new Error(`Received argument of invalid type "${typeof testIs}"`);
-	const formatAssertName = s => /^is[A-Z_0-9]/.test(name) ? name.replace(/^is/, "assert") : `AssertIs(${name.length > 0 ? name : "<unnamed testIs>"})`;
+	// const formatAssertName = s => /^is[A-Z_0-9]/.test(name) ? name.replace(/^is/, "assert") : `AssertIs(${name.length > 0 ? name : "<unnamed testIs>"})`;
 	const NAME_TEST =
 		testIs.name.length !== 0
 		? testIs.name
@@ -19,7 +19,10 @@ function AssertIs1(testIs) {
 		if (typeof label !== "string") throw new Error(`Received label argument of invalid type "${typeof label}"`);
 		if (label.length === 0) throw new Error(`Label must have a non-zero length`);
 		if (testIs(value)) return value;
-		throw new Error(`Type assertion failed: !${NAME_TEST}(${label})`);
+		throw new Error(`Type assertion failed: !${NAME_TEST}(${label})` + [
+			`(typeof ${label}="${typeof value}"`,
+			...(typeof value === "number" ? [`(value=(${value}))`] : []),
+		].map(s => "\n" + s).join(""));
 	}
 	Object.defineProperty(f, "name", { value: NAME_ASSERT, configurable: true });
 	return f;
