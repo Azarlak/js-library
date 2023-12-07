@@ -24,8 +24,30 @@ function AssertIs1(testIs) {
 	Object.defineProperty(f, "name", { value: NAME_ASSERT, configurable: true });
 	return f;
 }
-// TODO: Add more types; Will populate as I end up needing them.
+// TODO: Add more types; Will continue populating as I end up needing them.
+export const isFN = v => Number.isFinite(v);
+export const isUN = v => Number.isFinite(v) && v >= 0;
+export const isPN = v => Number.isFinite(v) && v >  0;
+export const isNN = v => Number.isFinite(v) && v <  0;
+export const isI  = v => Number.isInteger(v);
+export const isUI = v => Number.isInteger(v) && v >= 0;
+export const isPI = v => Number.isInteger(v) && v >  0;
+export const isNI = v => Number.isInteger(v) && v <  0;
+export const isS  = v => typeof v === "string";
 export const isPS = v => typeof v === "string" && v.length !== 0;
 export const isOO = v => typeof v === "object" && v !== null && v.constructor === Object;
+export const isB  = v => typeof v === "boolean";
+export const isF  = v => typeof v === "function";
+export const assertFN = AssertIs1(isFN);
+export const assertUN = AssertIs1(isUN);
+export const assertPN = AssertIs1(isPN);
+export const assertNN = AssertIs1(isNN);
+export const assertI  = AssertIs1(isI );
+export const assertUI = AssertIs1(isUI);
+export const assertPI = AssertIs1(isPI);
+export const assertNI = AssertIs1(isNI);
+export const assertS  = AssertIs1(isS );
 export const assertPS = AssertIs1(isPS);
 export const assertOO = AssertIs1(isOO);
+export const assertB  = AssertIs1(isB );
+export const assertF  = AssertIs1(isF );
