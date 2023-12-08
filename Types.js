@@ -73,7 +73,7 @@ export const AssertAA = assertItem => {
 export const AssertTA = isItem => AssertAA(AssertIs1(isItem));
 // AssertExactArray | AssertEachArray
 export const AssertEA = asserters => {
-	AssertAA(assertF)(asserters, "asserters";
+	AssertAA(assertF)(asserters, "asserters");
 	return (value, label = "value") => { AssertLA(asserters.length)(value, label).forEach((v, i) => asserters[i](v, `${label}[${i}]`)); return value; };
 };
 // AssertMultiArray
