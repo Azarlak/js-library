@@ -41,6 +41,8 @@ export const isPS = v => typeof v === "string" && v.length !== 0;
 export const isOO = v => typeof v === "object" && v !== null && v.constructor === Object;
 export const isB  = v => typeof v === "boolean";
 export const isF  = v => typeof v === "function";
+export const isA  = v => Array.isArray(v);
+export const isPA = v => Array.isArray(v) && v.length !== 0;
 export const assertFN = AssertIs1(isFN);
 export const assertUN = AssertIs1(isUN);
 export const assertPN = AssertIs1(isPN);
@@ -54,3 +56,25 @@ export const assertPS = AssertIs1(isPS);
 export const assertOO = AssertIs1(isOO);
 export const assertB  = AssertIs1(isB );
 export const assertF  = AssertIs1(isF );
+export const assertA  = AssertIs1(isA );
+export const assertPA = AssertIs1(isPA);
+export const IsLA = length => { assertUI(length, "length"); return value => 
+// AssertLengthArray
+export const AssertLA = length => {
+	assertUI(length, "length");
+	return (value, label = "value") => AssertIs1(function isLA(v) { return v.length === length; })(assertA(value, label), label);
+};
+// AssertAssertArray
+export const AssertAA = assertItem => (value, label = "value") => { assertA(value, label).forEach((v, i) => assertItem(v, `${label}[${i}]`)); return value; };
+// AssertTypeArray
+export const AssertTA = isItem => AssertAA(AssertIs1(isItem));
+// AssertExactArray | AssertEachArray
+export const AssertEA = asserters => {
+	AssertAA(assertF)(asserters, "asserters";
+	return (value, label = "value") => {
+		AssertLA(asserters.length)(value, label).forEach((v, i) => asserters[i](v, `${label}[${i}]`));
+		return value;
+	};
+};
+// AssertMultiArray
+export const AssertMA = tests => AssertEA(AssertAA(assertF)(tests, "tests").map(test => AssertIs1(test)));
