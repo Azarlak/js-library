@@ -58,7 +58,6 @@ export const assertB  = AssertIs1(isB );
 export const assertF  = AssertIs1(isF );
 export const assertA  = AssertIs1(isA );
 export const assertPA = AssertIs1(isPA);
-export const IsLA = length => { assertUI(length, "length"); return value => 
 // AssertLengthArray
 export const AssertLA = length => {
 	assertUI(length, "length");
