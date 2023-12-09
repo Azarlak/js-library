@@ -21,7 +21,8 @@ function AssertIs1(testIs) {
 		if (testIs(value)) return value;
 		throw new Error(`Type assertion failed: !${NAME_TEST}(${label})` + [
 			`(typeof ${label} = "${typeof value}")`,
-			...(typeof value === "number" ? [`(value = ${value})`] : []),
+			`(value = ${value})`,
+			// ...(typeof value === "number" ? [`(value = ${value})`] : []),
 			...(typeof value === "object" && value?.constructor?.name.length ? [`(${label}.constructor.name = "${value.constructor.name}")`] : []),
 		].map(s => "\n" + s).join(""));
 	}
