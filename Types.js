@@ -22,6 +22,7 @@ function AssertIs1(testIs) {
 		throw new Error(`Type assertion failed: !${NAME_TEST}(${label})` + [
 			`(typeof ${label} = "${typeof value}")`,
 			...(typeof value === "number" ? [`(value = ${value})`] : []),
+			...(typeof value === "object" && value?.constructor?.name.length ? [`(${label}.constructor.name = "${value.constructor.name}")`] : []),
 		].map(s => "\n" + s).join(""));
 	}
 	Object.defineProperty(f, "name", { value: NAME_ASSERT, configurable: true });
